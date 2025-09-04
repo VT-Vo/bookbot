@@ -1,4 +1,5 @@
 from stats import *
+import sys
 
 def get_book_text(filepath):
     text = ""
@@ -7,10 +8,15 @@ def get_book_text(filepath):
     return text
 
 def main():
-    text = get_book_text("books/frankenstein.txt")
+    arguments = sys.argv
+    if (not (len(arguments) == 2)):
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    
+    text = get_book_text(arguments[1])
 
     print("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
+    print(f"Analyzing book found at {arguments[1]}...")
     print("----------- Word Count ----------")
     print(get_word_count(text))
     print("--------- Character Count -------")
